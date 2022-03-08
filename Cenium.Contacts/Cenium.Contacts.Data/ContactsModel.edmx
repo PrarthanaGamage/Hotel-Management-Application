@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ContactsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ContactsModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ContactsModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false"  xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="ContactsEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" >
+          <EntitySet Name="Contacts" EntityType="ContactsModel.Contact" />
+          <EntitySet Name="Emails" EntityType="ContactsModel.Email" />
+          <AssociationSet Name="ContactEmail" Association="ContactsModel.ContactEmail">
+            <End Role="Contact" EntitySet="Contacts" />
+            <End Role="Email" EntitySet="Emails" />
+          </AssociationSet>
+          <EntitySet Name="ReservationContacts" EntityType="ContactsModel.ReservationContact" />
+        </EntityContainer>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="DoB" Type="DateTime" Nullable="true" ><a:DateTimeFormat xmlns:a="http://schemas.cenium.com/edmx/extension/DateTimeFormat">Date</a:DateTimeFormat></Property>
+          <NavigationProperty Name="Emails" Relationship="ContactsModel.ContactEmail" FromRole="Contact" ToRole="Email" />
+        </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="EmailId" />
+          </Key>
+          <Property Name="EmailId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" />
+          <NavigationProperty Name="Contact" Relationship="ContactsModel.ContactEmail" FromRole="Email" ToRole="Contact" />
+        </EntityType>
+        <Association Name="ContactEmail">
+          <End Type="ContactsModel.Contact" Role="Contact" Multiplicity="1" />
+          <End Type="ContactsModel.Email" Role="Email" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ReservationContact">
+          <Key>
+            <PropertyRef Name="ReservationContactId" />
+          </Key>
+          <Property Name="ReservationContactId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" DefaultValue="0" />
+          <Property Name="ReservationId" Type="Int64" Nullable="false" DefaultValue="0" />
+          <Property Name="NickName" Type="String" Nullable="false" DefaultValue="Empty" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ContactsModelStoreContainer" CdmEntityContainer="ContactsEntities" />
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="ComponentModel" DisplayType="true" >
+        <EntityTypeShape EntityType="ContactsModel.Contact" Width="1.5" PointX="3.125" PointY="1.375" />
+        <EntityTypeShape EntityType="ContactsModel.Email" Width="1.5" PointX="5.75" PointY="1.5" />
+        <AssociationConnector Association="ContactsModel.ContactEmail" />
+        <EntityTypeShape EntityType="ContactsModel.ReservationContact" Width="1.5" PointX="8.125" PointY="1.625" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

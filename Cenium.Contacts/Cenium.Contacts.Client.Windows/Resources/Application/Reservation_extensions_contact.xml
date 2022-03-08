@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ui>
+  <layoutExtensions>
+    <layoutExtension id="reservation.extension.contact" extensionId="reservations.panes.general.columnZero" extensionType="pane" order="400">
+      <layout>
+        <section id="reservations.details" label="Details" constraints="column=0" >
+          <items>
+            <item id="ReservationContactExt.NickName" label="Nick Name" type="TextBox"/>
+          </items>
+        </section>
+      </layout>
+    </layoutExtension>
+  </layoutExtensions>
+
+</ui>

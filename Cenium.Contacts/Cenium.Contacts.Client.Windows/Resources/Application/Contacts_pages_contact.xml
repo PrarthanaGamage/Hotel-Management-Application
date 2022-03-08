@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ui>
+  <!-- Add panes here-->
+  <panes>
+    <pane id="contacts.pane.manageemails.datagrid" type="framework.pane.datagridpane" >
+      <properties>
+        <property id="Height" value="280" />
+      </properties>
+      <layout>
+        <section id="emailsdatagrid">
+          <items>
+            <item id="EmailAddress" label="!contacts.email.emailaddress" type="Column" width="60" readOnly="false"/>
+          </items>
+        </section>
+      </layout>
+    </pane>
+  </panes>
+  <!-- Add dialogs here -->
+  <dialogs>
+
+  </dialogs>
+
+  <!-- Add pages here-->
+  <pages>
+    <page id="contacts.page.contact" name="Contacts" description="Add and maintain contacts"
+        model="framework.pages.listviewmodel" type="framework.listitempage"
+        icon="waivers.icon.waiversource" >
+
+      <properties>
+        <property id="Columns" value="1" type="Int" />
+        <property id="ColumnLayout" value="WideFirstColumn" />
+      </properties>
+
+      <modelProperties>
+        <property id="CreateMethod" value="Contacts/Contact/Create" />
+        <property id="GetMethod" value="Contacts/Contact/Get/{ContactId}" />
+        <property id="QueryMethod" value="Contacts/Contact/Query" />
+        <property id="UpdateMethod" value="Contacts/Contact/Update" />
+        <property id="RemoveMethod" value="Contacts/Contact/Delete" />
+        <property id="SortOrder" value="Name" />
+        <property id="IncludeChildRecords" value="true" type="Bool" />
+      </modelProperties>
+
+      <layout>
+        <section id="listView" readOnly="true">
+          <items>
+            <item id="Name" type="TextBlock">
+              <properties>
+                <property id="TextStyle" value="TitleText" />
+              </properties>
+            </item>
+          </items>
+        </section>
+
+        <section id="general" label="General" constraints="column=0">
+          <items>
+            <item id="Name" label="Name:" type="TextBox" readOnly="false" />
+            <item id="DoB" label="Date of Birth" type="DatePicker" format="ShortDate" readOnly="false"/>
+            <item id="AgeYears" label="Age Years/Months" type="TextBox" readOnly="true" width="35" column="0" row="1" />
+            <item id="AgeMonths" labelVisibility="Collapsed" label="" type="TextBox" width="35" readOnly="true" column="1" row="1"/>
+          </items>
+        </section>
+
+        <section id="Emails" label="Emails" constraints="column=0">
+          <items>
+            <item id="Emails" label="" type="contacts.pane.manageemails.datagrid" labelVisibility="Collapsed">
+              <properties>
+                <property id="Name" value="Emails" /> <!--value equals parent control name-->
+              </properties>
+            </item>
+            <item id="Emails" label="" type="framework.controls.data.DataCollectionCommandBar" labelVisibility="Collapsed">
+              <properties>
+                <property id="ParentControlName" value="Emails" />
+                <property id="CopyPropertyNames" value="ContactId" />
+              </properties>
+            </item>
+          </items>
+        </section>
+        
+      </layout>
+
+      <actions>
+
+        <action id="refresh" type="framework.RefreshAction" />
+        <action id="save" type="framework.SaveAction" />
+        <action id="add" type="framework.CreateAction" />
+        <action id="delete" type="framework.DeleteAction" />
+      </actions>
+      
+    </page>
+  </pages>
+
+  <actionExtensions>
+    <actionExtension id="frontdesk.extension.actions.block.externalgroupblocklog" extensionId="blocks.externalgroupblocklog" order="90">
+      <actions>
+        <action id="action.extention.add" type="framework.AddDialogAction">
+          <properties>
+            <property id="DialogId" value="Reservations.dialog.createnewreservation" />
+            <property id="ActionMethod" value="Reservations/Reservation/Create" />
+          </properties>
+        </action>
+      </actions>
+    </actionExtension>
+  </actionExtensions>
+
+</ui>

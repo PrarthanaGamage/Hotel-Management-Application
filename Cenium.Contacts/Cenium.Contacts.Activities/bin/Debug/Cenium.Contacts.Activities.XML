@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cenium.Contacts.Activities</name>
+    </assembly>
+    <members>
+        <member name="T:Cenium.Contacts.Activities.ContactActivity">
+            <summary>
+            The ContactActivity class is an activity class that exposes data operation methods to the service layer. This class is responsible for applying business logic prior to making
+            updates in the data store.
+            </summary>
+            <seealso cref="T:Cenium.Contacts.Data.Contact"/>
+            <seealso cref="T:Cenium.Contacts.Data.ContactsEntitiesContext"/>
+        </member>
+        <member name="M:Cenium.Contacts.Activities.ContactActivity.#ctor">
+            <summary>
+            Initializes a new instance of the ContactActivity class
+            </summary>
+        </member>
+        <member name="M:Cenium.Contacts.Activities.ContactActivity.#ctor(Cenium.Contacts.Data.ContactsEntitiesContext)">
+            <summary>
+            Initializes a new instance of the ContactActivity class, sharing the context with other activities
+            </summary>
+            <param name="ctx">The shared context</param>
+        </member>
+        <member name="M:Cenium.Contacts.Activities.ContactActivity.Query">
+            <summary>
+            Activity query method that returns an IEnumerable&lt;Contact&gt; instance. 
+            </summary>
+            <returns>A strongly type IEnumerable instance </returns>
+        </member>
+        <member name="M:Cenium.Contacts.Activities.ContactActivity.Get(System.Int64)">
+            <summary>
+            Gets a Contact instance from the datastore based on Contact keys.
+            </summary>
+            <param name="contactId">The key for Contact</param>
+            <returns>A Contact instance, or null if there is no entities with the given key</returns>
+        </member>
+        <member name="M:Cenium.Contacts.Activities.ContactActivity.Create(Cenium.Contacts.Data.Contact)">
+            <summary>
+            Adds a new instance of Contact to the data store
+            </summary>
+            <param name="contact">The instance to add</param>
+            <returns>The created instance</returns>
+        </member>
+        <member name="M:Cenium.Contacts.Activities.ContactActivity.Update(Cenium.Contacts.Data.Contact)">
+            <summary>
+            Updates a Contact instance in the data store
+            </summary>
+            <param name="contact">The instance to update</param>
+            <returns>The updated instance</returns>
+        </member>
+        <member name="M:Cenium.Contacts.Activities.ContactActivity.Delete(Cenium.Contacts.Data.Contact)">
+            <summary>
+            Deletes a Contact instance from the data store
+            </summary>
+            <param name="contact">The instance to delete</param>
+        </member>
+        <member name="M:Cenium.Contacts.Activities.ContactActivity.GetFromDatastore(System.Int64)">
+            <summary>
+            Retrieves a single entity instance from the data store
+            </summary>
+            <param name="contactId">The key for Contact</param>
+            <returns>A single Contact instance, or null if the instance doesn't exist</returns>
+        </member>
+        <member name="M:Cenium.Contacts.Activities.ContactActivity.Dispose">
+            <summary>
+            Releases all resources used by this ContactActivity instance.
+            </summary>
+        </member>
+        <member name="T:Cenium.Contacts.Activities.EmailActivity">
+            <summary>
+            The EmailActivity class is an activity class that exposes data operation methods to the service layer. This class is responsible for applying business logic prior to making
+            updates in the data store.
+            </summary>
+            <seealso cref="T:Cenium.Contacts.Data.Email"/>
+            <seealso cref="T:Cenium.Contacts.Data.ContactsEntitiesContext"/>
+        </member>
+        <member name="M:Cenium.Contacts.Activities.EmailActivity.#ctor">
+            <summary>
+            Initializes a new instance of the EmailActivity class
+            </summary>
+        </member>
+        <member name="M:Cenium.Contacts.Activities.EmailActivity.#ctor(Cenium.Contacts.Data.ContactsEntitiesContext)">
+            <summary>
+            Initializes a new instance of the EmailActivity class, sharing the context with other activities
+            </summary>
+            <param name="ctx">The shared context</param>
+        </member>
+        <member name="M:Cenium.Contacts.Activities.EmailActivity.Query">
+            <summary>
+            Activity query method that returns an IEnumerable&lt;Email&gt; instance. 
+            </summary>
+            <returns>A strongly type IEnumerable instance </returns>
+        </member>
+        <member name="M:Cenium.Contacts.Activities.EmailActivity.Get(System.Int64)">
+            <summary>
+            Gets a Email instance from the datastore based on Email keys.
+            </summary>
+            <param name="emailId">The key for Email</param>
+            <returns>A Email instance, or null if there is no entities with the given key</returns>
+        </member>
+        <member name="M:Cenium.Contacts.Activities.EmailActivity.Create(Cenium.Contacts.Data.Email)">
+            <summary>
+            Adds a new instance of Email to the data store
+            </summary>
+            <param name="email">The instance to add</param>
+            <returns>The created instance</returns>
+        </member>
+        <member name="M:Cenium.Contacts.Activities.EmailActivity.Update(Cenium.Contacts.Data.Email)">
+            <summary>
+            Updates a Email instance in the data store
+            </summary>
+            <param name="email">The instance to update</param>
+            <returns>The updated instance</returns>
+        </member>
+        <member name="M:Cenium.Contacts.Activities.EmailActivity.Delete(Cenium.Contacts.Data.Email)">
+            <summary>
+            Deletes a Email instance from the data store
+            </summary>
+            <param name="email">The instance to delete</param>
+        </member>
+        <member name="M:Cenium.Contacts.Activities.EmailActivity.GetFromDatastore(System.Int64)">
+            <summary>
+            Retrieves a single entity instance from the data store
+            </summary>
+            <param name="emailId">The key for Email</param>
+            <returns>A single Email instance, or null if the instance doesn't exist</returns>
+        </member>
+        <member name="M:Cenium.Contacts.Activities.EmailActivity.Dispose">
+            <summary>
+            Releases all resources used by this EmailActivity instance.
+            </summary>
+        </member>
+        <member name="T:Cenium.Contacts.Activities.NamespaceDoc">
+            <summary>
+            Contains activity classes that comprise the application processing layer of the component Contacts
+            </summary>
+        </member>
+        <member name="T:Cenium.Contacts.Activities.ResourceHelpers.ReservationResultHandlerFactory">
+            <summary>
+            Explain the purpose of the class here
+            </summary>
+        </member>
+        <member name="M:Cenium.Contacts.Activities.ResourceHelpers.ReservationResultHandlerFactory.#ctor">
+            <summary>
+            Initializes a new instance of the ItemResultHandlerFactory class
+            </summary>
+        </member>
+        <member name="T:Cenium.Contacts.Activities.ResourceHelpers.ResultHandlerBase">
+            <summary>
+            Explain the purpose of the class here
+            </summary>
+        </member>
+    </members>
+</doc>
