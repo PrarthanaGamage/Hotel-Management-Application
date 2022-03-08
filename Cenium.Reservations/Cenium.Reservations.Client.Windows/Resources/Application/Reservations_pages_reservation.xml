@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ui>
+  <!-- Add panes here-->
+  <panes>
+    <pane id="reservations.pane.reservations" type="standard.pane.grouplayout" columns="1">
+      <layout>
+        <section id="room" label="Reservation" constraints="column=0">
+          <items>
+            <item id="" label="" labelVisibility="Collapsed" type="reservations.pane.reservation.details" column="0" />
+          </items>
+        </section>
+      </layout>
+    </pane>
+
+    <pane id="reservations.pane.reservation.details" type="framework.pane.gridpane" columns="2">
+      <properties>
+        <property id="ColumnWidths" value="0=1.25*^1=1*" />
+        <property id="ColumnMargin" type="Double" value="5" />
+      </properties>
+      <layout>
+        <section id="reservation.general" label="">
+          <items>
+            <item id="" label="" labelVisibility="Collapsed" type="reservations.panes.general.columnZero" column="0" />
+            <item id="" label="" labelVisibility="Collapsed" type="reservations.panes.general.columnOne" column="1" />
+          </items>
+        </section>
+      </layout>
+    </pane>
+    
+    <pane id="reservations.panes.general.columnZero" type="standard.pane.grouplayout" columns="1">
+      <layout>
+        <section id="reservations.details" label="Details">
+          <items>
+            <item id="ReservationStatus" label="Reservation Status :" type="TextBox" readOnly="true"/>
+            <item id="Note" label="Note:" type="TextBox" />
+            <item id="Amount" label="Amount" type="TextBox" readOnly="true"/>
+            <!--<item></item>-->
+          </items>
+        </section>
+      </layout>
+    </pane>
+
+    <pane id="reservations.panes.general.columnOne" type="framework.pane.gridpane" columns="1" rows="7">
+      <properties>
+        <property id="LabelPosition" value="Left" />
+        <property id="LabelWidth" type="Double" value="120" />
+      </properties>
+      <layout>
+        <section id="reservations.shortinfo" label="">
+          <items>
+            <item id="CheckInDate" label="Check In Date:" type="DatePicker" format="ShortDate" readOnly="false" column="0" row="0" />
+            <item id="CheckOutDate" label="Check Out Date:" type="DatePicker" format="ShortDate" readOnly="false" column="0" row="1" />
+            <item id="RoomId" label="Room No" type="standard.controls.data.valuelistlookup" readOnly="false" valueList="Rooms/Room/Query" column="0" row="2" >
+              <properties>
+                <property id="CopyPropertyNames" value="RoomNo=RoomName" />
+              </properties>
+              <bindings>
+                <binding property="DisplayValue" bindTo="RoomName" readOnly="true" />
+              </bindings>
+            </item>
+          <item id="ContactId" label="Contact Name" type="standard.controls.data.valuelistlookup" readOnly="false" valueList="Contacts/Contact/Query" column="0" row="3" >
+              <properties>
+                <property id="CopyPropertyNames" value="Name=CustomerName" />
+              </properties>
+              <bindings>
+                <binding property="DisplayValue" bindTo="CustomerName" readOnly="true" />
+              </bindings>
+            </item>
+          <item id="PriceId" label="Amount" type="standard.controls.data.valuelistlookup" readOnly="false" valueList="Prices/Price/Query" column="0" row="4" >
+              <properties>
+                <property id="CopyPropertyNames" value="Amount=Price" />
+              </properties>
+              <bindings>
+                <binding property="DisplayValue" bindTo="Price" readOnly="true" />
+              </bindings>
+            </item>
+          </items>
+        </section>
+      </layout>
+    </pane>
+    
+  </panes>
+  <!-- Add dialogs here -->
+  <dialogs>
+    <dialog id="Reservations.dialog.createnewreservation" name="Add Reservation" icon="Reservations.icon.testicon"
+      description="Click OK to create a New Reservations."
+        contentPanel="framework.ItemDialog" applyButton="false" showHeader="true">
+      <layout>
+        <section id="reservations.add" label="">
+          <items>
+            <item id="CheckInDate" label="Check In Date:" type="DatePicker" format="ShortDate" readOnly="false" column="0" row="0" />
+            <item id="CheckOutDate" label="Check Out Date:" type="DatePicker" format="ShortDate" readOnly="false" column="0" row="1" />
+            <item id="RoomType" label="Room Type" type="standard.controls.data.valuelistlookup" readOnly="false" valueList="Rooms/RoomType/Query" column="0" row="2" >
+              <properties>
+                <property id="CopyPropertyNames" value="RoomTypeName=RoomType" />
+              </properties>
+              <bindings>
+                <binding property="DisplayValue" bindTo="RoomType" readOnly="true" />
+              </bindings>
+            </item>
+            <item id="ContactId" label="Contact Name" type="standard.controls.data.valuelistlookup" readOnly="false" valueList="Contacts/Contact/Query" column="0" row="3" >
+              <properties>
+                <property id="CopyPropertyNames" value="Name=CustomerName" />
+              </properties>
+              <bindings>
+                <binding property="DisplayValue" bindTo="CustomerName" readOnly="true" />
+              </bindings>
+            </item>
+            <item id="PriceId" label="Amount" type="standard.controls.data.valuelistlookup" readOnly="false" valueList="Prices/Price/Query" column="0" row="4" >
+              <properties>
+                <property id="CopyPropertyNames" value="Amount=Price" />
+              </properties>
+              <bindings>
+                <binding property="DisplayValue" bindTo="Price" readOnly="true" />
+              </bindings>
+            </item>
+          </items>
+        </section>
+      </layout>
+    </dialog>
+
+    <dialog id="reservations.dialog.get.contactdetails" name="Contact Details"
+            description="Shows the relevant contact details for each reservation."
+            contentPanel="framework.ItemDialog" applyButton="false" showHeader="true" readOnly="true">
+      <layout>
+        <section id="task" readOnly="false">
+          <items>
+            <item id="Name" label="Contact Name :" type="TextBox" readOnly="true"/>
+            <item id="DoB" label="Date of Birth :" type="TextBox" readOnly="true"/>
+          </items>
+        </section>
+      </layout>
+    </dialog>
+    
+  </dialogs>
+
+  <!-- Add pages here-->
+  <pages>
+    <page id="reservations.page.reservation" name="Reservation Details" description="Display and maintain reservation details" model="framework.pages.listviewmodel" type="standard.pagetype.list">
+      <modelProperties>
+        <property id="CreateMethod" value="Reservations/Reservation/Create" />
+        <property id="QueryMethod" value="Reservations/Reservation/Query" />
+        <property id="GetMethod" value="Reservations/Reservation/Get/{ReservationId}" />
+        <property id="UpdateMethod" value="Reservations/Reservation/Update" />
+        <property id="RemoveMethod" value="Reservations/Reservation/Delete" />
+        <property id="SortOrder" value="ReservationId" />
+        <property id="IncludeChildRecords" value="true" type="Bool" />
+      </modelProperties>
+
+      <layout>
+
+        <section id="griditem" readOnly="true">
+          <items>
+            <item id="CheckInDate" label="!reservations.reservation.checkindate" type="Column" width="1*" />
+            <item id="CheckOutDate" label="!reservations.reservation.checkoutdate" type="Column" width="1*" />
+            <item id="ReservationStatus" label="!reservations.reservation.reservationstatus" type="Column" width="1*" />
+            <item id="Note" label="!reservations.reservation.note" type="Column" width="1*" />
+          </items>
+        </section>
+
+        <section id="listitem" readOnly="true">
+          <items>
+            <item id="ReservationId" type="TextBlock" labelVisibility="Collapsed">
+              <properties>
+                <property id="TextStyle" value="TitleText" />
+              </properties>
+            </item>
+            <item id="ReservationStatus" type="TextBlock" labelVisibility="Collapsed">
+              <properties>
+                <property id="TextStyle" value="SubtleText" />
+              </properties>
+            </item>
+          </items>
+        </section>
+
+        <section id="summary">
+          <items>
+            <item id="general" labelVisibility="Collapsed" type="reservations.pane.reservation.details" />
+          </items>
+        </section>
+
+        <section id="sidebar">
+          <items>
+            <item id="general" labelVisibility="Collapsed" type="reservations.pane.reservation.sidebar" />
+          </items>
+        </section>
+
+        <!--<section id="detail">
+          <items>
+            <item id="general" labelVisibility="Collapsed" type="rooms.pane.room.details" />
+          </items>
+        </section>-->
+
+      </layout>
+      
+      <actions>
+        <action id="refresh" type="framework.RefreshAction" />
+        <action id="save" type="framework.SaveAction" />
+        <!--<action id="add" type="framework.CreateAction" />-->
+        <action id="add" type="framework.AddDialogAction">
+          <properties>
+            <property id="DialogId" value="Reservations.dialog.createnewreservation" />
+            <property id="ActionMethod" value="Reservations/Reservation/Create" />
+          </properties>
+        </action>
+        <action id="delete" type="framework.DeleteAction" />
+
+        <action id="checkin" label="Check-In" description="Check-in reservations" type="reservations.checkinaction" group="action" icon="Reservations.icon.CheckIn">
+          <conditions>
+            <condition property="ReservationStatus" operator="Equals" value="Created"></condition>
+          </conditions>   
+        </action>
+
+        <action id="checkout" label="Check-Out" description="Check-out reservations" type="reservations.checkoutaction" group="action" icon="Reservations.icon.CheckIn">
+          <conditions>
+            <condition property="ReservationStatus" operator="Equals" value="Checked-In"></condition>
+          </conditions>
+        </action>
+
+        <action id="points" label="Contact Details" description="Shows contact details." type="reservation.action.dialogservermodel.withparameter" displayType="#home" group="action">
+          <properties>
+            <property id="GetMethod" value="Contacts/Contact/Get/{ContactId}" />
+            <property id="Parameters" value="ContactId" />
+            <property id="DialogId" value="reservations.dialog.get.contactdetails" />
+            <property id="ActionMethod" value="Contacts/Contact/Update" />
+          </properties>
+        </action>
+        
+      </actions>
+      
+    </page>
+  </pages>
+
+</ui>

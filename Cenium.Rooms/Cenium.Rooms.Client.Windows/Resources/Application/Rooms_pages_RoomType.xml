@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ui>
+  <!-- Add panes here-->
+  <panes>
+    
+  </panes>
+  <!-- Add dialogs here -->
+  <dialogs>
+    
+  </dialogs>
+
+  <!-- Add pages here-->
+  <pages>
+    <page id="rooms.page.roomtype" name="Room Type" description="Add and maintain room types"
+        model="framework.pages.listviewmodel" type="framework.listitempage"
+        icon="waivers.icon.waiversource" >
+
+      <properties>
+        <property id="Columns" value="1" type="Int" />
+        <property id="ColumnLayout" value="WideFirstColumn" />
+      </properties>
+
+      <modelProperties>
+        <property id="CreateMethod" value="Rooms/RoomType/Create" />
+        <property id="GetMethod" value="Rooms/RoomType/Get/{RoomTypeId}" />
+        <property id="QueryMethod" value="Rooms/RoomType/Query" />
+        <property id="UpdateMethod" value="Rooms/RoomType/Update" />
+        <property id="RemoveMethod" value="Rooms/RoomType/Delete" />
+        <property id="SortOrder" value="RoomTypeCode" />
+        <property id="IncludeChildRecords" value="true" type="Bool" />
+      </modelProperties>
+
+      <layout>
+        <section id="listView" readOnly="true">
+          <items>
+            <item id="RoomTypeCode" type="TextBlock">
+              <properties>
+                <property id="TextStyle" value="TitleText" />
+              </properties>
+            </item>
+          </items>
+        </section>
+
+        <section id="general" label="General" constraints="column=0">
+          <items>
+            <item id="RoomTypeCode" label="Code:" type="TextBox" readOnly="false" />
+            <item id="RoomTypeName" label="Room Type:" type="TextBox" readOnly="false" />
+            <item id="PriceCode" label="Price Code" type="framework.controls.data.ReferenceComboBox" valueList="prices/price/Query" width="200">
+              <properties>
+                <property id="DisplayPropertyName" value="PriceCode" />
+              </properties>
+            </item> 
+          </items>
+        </section>
+      </layout>
+
+      <actions>
+        <action id="refresh" type="framework.RefreshAction" />
+        <action id="save" type="framework.SaveAction" />
+        <action id="add" type="framework.CreateAction" />
+        <action id="delete" type="framework.DeleteAction" />
+      </actions>
+    </page>
+  </pages>
+
+</ui>

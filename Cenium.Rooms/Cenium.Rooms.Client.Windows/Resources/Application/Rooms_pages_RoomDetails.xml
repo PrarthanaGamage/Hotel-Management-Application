@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ui>
+  <!-- Add panes here-->
+  <panes>
+  </panes>
+  <!-- Add dialogs here -->
+  <dialogs>
+
+  </dialogs>
+
+  <!-- Add pages here-->
+  <pages>
+    <page id="rooms.page.roomdetails" name="Room Details" description="Display and maintain room details" model="framework.pages.listviewmodel" type="standard.pagetype.list">
+      <modelProperties>
+        <property id="CreateMethod" value="Rooms/Room/Create" />
+        <property id="QueryMethod" value="Rooms/Room/Query" />
+        <property id="GetMethod" value="Rooms/Room/Get/{RoomId}" />
+        <property id="UpdateMethod" value="Rooms/Room/Update" />
+        <property id="RemoveMethod" value="Rooms/Room/Delete" />
+        <property id="SortOrder" value="RoomNo" />
+        <property id="IncludeChildRecords" value="true" type="Bool" />
+      </modelProperties>
+
+      <layout>
+        
+          <section id="griditem" readOnly="true">
+            <items>
+              <item id="RoomNo" label="Room Number" type="Column" width="1*" />
+              <item id="RoomType" label="!rooms.room.roomtype" type="Column" width="1*" />
+              <item id="RoomStatus" label="!rooms.room.roomstatus" type="Column" width="1*" />
+              <item id="ReservedFrom" label="!rooms.room.reservedfrom" type="Column" width="1*" />
+              <item id="ReservedTill" label="!rooms.room.reservedtill" type="Column" width="1*"/>
+            </items>
+          </section>
+
+          <section id="listitem" readOnly="true">
+            <items>
+              <item id="RoomNo" type="TextBlock" labelVisibility="Collapsed">
+                <properties>
+                  <property id="TextStyle" value="TitleText" />
+                </properties>
+              </item>
+              <item id="RoomType" type="TextBlock" labelVisibility="Collapsed">
+                <properties>
+                  <property id="TextStyle" value="SubtleText" />
+                </properties>
+              </item>
+            </items>
+          </section>
+        
+        <section id="summary">
+          <items>
+            <item id="general" labelVisibility="Collapsed" type="rooms.pane.room.details" />
+          </items>
+        </section>
+
+        <section id="sidebar">
+          <items>
+            <item id="general" labelVisibility="Collapsed" type="roooms.pane.room.sidebar" />
+          </items>
+        </section>
+
+        <!--<section id="detail">
+          <items>
+            <item id="general" labelVisibility="Collapsed" type="rooms.pane.room.details" />
+          </items>
+        </section>-->
+        
+      </layout>
+
+      <actions>
+
+        <action id="refresh" type="framework.RefreshAction" />
+        <action id="save" type="framework.SaveAction" />
+        <action id="add" type="framework.CreateAction" />
+        <action id="delete" type="framework.DeleteAction" />
+
+      </actions>
+      
+    </page>
+  </pages>
+
+</ui>

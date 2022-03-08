@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ui>
+  <!-- Add panes here-->
+  <panes>
+
+  </panes>
+  <!-- Add dialogs here -->
+  <dialogs>
+
+  </dialogs>
+
+  <!-- Add pages here-->
+  <pages>
+    <page id="rooms.page.feature" name="Features" description="Add and maintain room features"
+        model="framework.pages.listviewmodel" type="framework.listitempage"
+        icon="waivers.icon.waiversource" >
+
+      <properties>
+        <property id="Columns" value="1" type="Int" />
+        <property id="ColumnLayout" value="WideFirstColumn" />
+      </properties>
+
+      <modelProperties>
+        <property id="CreateMethod" value="Rooms/Feature/Create" />
+        <property id="GetMethod" value="Rooms/Feature/Get/{FeatureId}" />
+        <property id="QueryMethod" value="Rooms/Feature/Query" />
+        <property id="UpdateMethod" value="Rooms/Feature/Update" />
+        <property id="RemoveMethod" value="Rooms/Feature/Delete" />
+        <property id="SortOrder" value="Name" />
+        <property id="IncludeChildRecords" value="true" type="Bool" />
+      </modelProperties>
+
+      <layout>
+        <section id="listView" readOnly="true">
+          <items>
+            <item id="FeatureName" type="TextBlock">
+              <properties>
+                <property id="TextStyle" value="TitleText" />
+              </properties>
+            </item>
+          </items>
+        </section>
+
+        <section id="general" label="General" constraints="column=0">
+          <items>
+            <item id="FeatureName" label="Feature Name:" type="TextBox" readOnly="false" />
+            <item id="Description" label="Description:" type="TextBox" readOnly="false" />
+          </items>
+        </section>
+
+      </layout>
+
+      <actions>
+
+        <action id="refresh" type="framework.RefreshAction" />
+        <action id="save" type="framework.SaveAction" />
+        <action id="add" type="framework.CreateAction" />
+        <action id="delete" type="framework.DeleteAction" />
+      </actions>
+    </page>
+  </pages>
+
+</ui>
